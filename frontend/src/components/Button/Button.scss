@@ -1,0 +1,32 @@
+@import "../../scss/colors.scss";
+
+button {
+    color: $color-text;
+    &.primary {
+        background: $color-primary;
+        &.light {
+            background: $color-primary-light;
+        }
+        &.dark {
+            background: $color-primary-dark;
+        }
+    }
+    &.secondary {
+        background: $color-secondary;
+        &.light {
+            background: $color-secondary-light;
+        }
+        &.dark {
+            background: $color-secondary-dark;
+        }
+    }
+    &.small {
+
+    }
+    &.medium {
+
+    }
+    &.large {
+
+    }
+}
