@@ -1,37 +1,26 @@
 import React from "react";
 import "./Button.scss";
 
-export interface ButtonProps{
+export interface ButtonProps {
     color: "primary" | "primary-light" | "primary-dark" | "secondary" | "secondary-light" | "secondary-dark" | "alert" | "warning" | "success";
     size: "small" | "medium" | "large";
+    behavior: "newTab" | "currentTab" | "newWindow";
     label: string;
     onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    url: string;
+    target: string;
 }
 
-const Button = ({
-    color = "primary",
-    size = "medium",
-    label = "button",
-    onClick
-}: ButtonProps) => {
-    const classes = [
-        color == "primary" ? "primary" : null,
-        color == "primary-light" ? "primary light" : null,
-        color == "primary-dark" ? "primary dark" : null,
-        color == "secondary" ? "secondary" : null,
-        color == "secondary-light" ? "secondary light" : null,
-        color == "secondary-dark" ? "secondary dark" : null,
-        size
-    ];
-    return (
-        <button 
-            type="button"
-            className={classes.join(" ")}
-            onClick={onClick}
-        >
-            {label}
-        </button>
-    )
-}
+export default abstract class Button extends React.Component<ButtonProps> {
+    static defaultProps = {
+        color: "primary",
+        size: "medium",
+        label: "button",
+    };
 
-export default Button;
+    constructor(props: ButtonProps) {
+        super(props)
+    }
+
+    abstract render(): JSX.Element;
+}
