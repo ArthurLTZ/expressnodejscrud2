@@ -1,13 +1,21 @@
 @import "../../scss/colors.scss";
+a {
+    text-decoration: none;
+}
+
 button {
-    color: $color-text;
-    //remove button default styling
     background: none;
     border: none;
-    padding: 0;
     font: inherit;
-    cursor: pointer;
     outline: inherit;
+}
+
+button,
+a {
+    color: $color-text;
+    //remove button default styling
+    padding: 0;
+    cursor: pointer;
     &.primary {
         background: $color-primary;
         &.light {

@@ -2,14 +2,14 @@ import React from "react";
 import { Meta } from "@storybook/react/types-6-0";
 import { ButtonProps } from "../Button";
 import { Story } from "@storybook/react";
-import ActionButton from "./ActionButton";
+import ActionButton, { ActionButtonProps } from "./ActionButton";
 
 export default {
     title: "Components/Button/ActionButton",
     component: ActionButton,
 } as Meta;
 
-const Template: Story<ButtonProps> = (args) => <ActionButton {...args} />;
+const Template: Story<ActionButtonProps> = (args) => <ActionButton {...args} />;
 
 export const SmallPrimary = Template.bind({});
 SmallPrimary.args = { label: "small-primary", color: "primary", size: "small", onClick: (event) => console.log("You click on small primary button !") };

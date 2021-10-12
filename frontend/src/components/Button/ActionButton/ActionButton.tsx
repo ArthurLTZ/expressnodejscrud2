@@ -1,6 +1,12 @@
-import Button from "../Button";
+import React from "react";
+import Button, { ButtonProps } from "../Button";
 
-export default class ActionButton extends Button {
+
+export interface ActionButtonProps extends ButtonProps {
+    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
+
+export default class ActionButton extends Button<ActionButtonProps> {
 
     render(): JSX.Element {
         const classes = [

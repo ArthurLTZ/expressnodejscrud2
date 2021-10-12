@@ -1,6 +1,17 @@
-import Button from "../Button";
+import Button, { ButtonProps } from "../Button";
 
-export default class LinkButton extends Button {
+
+
+export interface OpenInFrame {
+    frameName: string;
+}
+
+export interface LinkButtonProps extends ButtonProps {
+    url: string,
+    behavior: "newTab" | "currentTab" | "fullBody" | "parentFrame" | OpenInFrame,
+}
+
+export default class LinkButton extends Button<LinkButtonProps> {
 
     render(): JSX.Element {
         const classes = [
@@ -10,18 +21,32 @@ export default class LinkButton extends Button {
             this.props.color == "secondary" ? "secondary" : null,
             this.props.color == "secondary-light" ? "secondary light" : null,
             this.props.color == "secondary-dark" ? "secondary dark" : null,
-            this.props.size,
-            this.props.behavior == "currentTab" ? "currentTab" : null,
-            this.props.behavior == "newTab" ? "newTab" : null,
-            this.props.behavior == "newWindow" ? "newWindow" : null,
-            this.props.url
+            this.props.size
         ];
+        let target: string;
+        switch (this.props.behavior) {
+            case "newTab":
+                target = "_blank";
+                break;
+            case "currentTab":
+                target = "_self";
+                break;
+            case "fullBody":
+                target = "_top";
+                break;
+            case "parentFrame":
+                target = "_parent";
+                break;
+            default:
+                target = this.props.behavior.frameName;
+                break;
+        }
+
         return (
             <a
-                href="http://google.fr"
+                href={this.props.url}
                 className={classes.join(" ")}
-                target={this.props.behavior}
-            // onClick={this.props.onClick}
+                target={target}
             >
                 {this.props.label}
             </a>
